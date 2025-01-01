@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tab Example</title>
+    <style>
+      /* Container for tabs */
+      .operations__tab-container {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 20px;
+      }
+
+      /* Styling for each tab */
+      .operations__tab {
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+        background-color: #f0f0f0;
+        cursor: pointer;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 4px;
+      }
+
+      .operations__tab--active {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+      }
+
+      /* Panel content style */
+      .operations__content {
+        display: none;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .operations__content--active {
+        display: block;
+      }
+
+      /* Optional: Styling for the panel container */
+      .operations__content {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div role="tablist" class="operations__tab-container">
+      <button
+        role="tab"
+        aria-selected="true"
+        aria-controls="panel1"
+        id="tab1"
+        class="operations__tab operations__tab--1 operations__tab--active"
+        data-tab="1"
+      >
+        Tab 1
+      </button>
+      <button
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel2"
+        id="tab2"
+        class="operations__tab operations__tab--2"
+        data-tab="2"
+      >
+        Tab 2
+      </button>
+      <button
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel3"
+        id="tab3"
+        class="operations__tab operations__tab--3"
+        data-tab="3"
+      >
+        Tab 3
+      </button>
+    </div>
+
+    <div
+      role="tabpanel"
+      id="panel1"
+      aria-labelledby="tab1"
+      class="operations__content operations__content--1 operations__content--active"
+    >
+      Content for Tab 1
+    </div>
+    <div
+      role="tabpanel"
+      id="panel2"
+      aria-labelledby="tab2"
+      class="operations__content operations__content--2"
+      hidden
+    >
+      Content for Tab 2
+    </div>
+    <div
+      role="tabpanel"
+      id="panel3"
+      aria-labelledby="tab3"
+      class="operations__content operations__content--3"
+      hidden
+    >
+      Content for Tab 3
+    </div>
+
+    <script>
+      function settab(n) {
+        document
+          .querySelector(`.operations__tab--${n}`)
+          .classList.add("operations__tab--active");
+
+        document
+          .querySelector(`.operations__content--${n}`)
+          .classList.add("operations__content--active");
+      }
+
+      function setactivetab(n) {
+        const no_of_tab = document.querySelectorAll(
+          ".operations__content"
+        ).length;
+        console.log(no_of_tab);
+        document
+          .querySelector(".operations__tab--active")
+          ?.classList.remove("operations__tab--active");
+        document
+          .querySelector(".operations__content--active")
+          ?.classList.remove("operations__content--active");
+        settab(n);
+      }
+
+      // Tabbed content
+      const tabsContainer = document.querySelector(
+        ".operations__tab-container"
+      );
+      const tabs = document.querySelectorAll(".operations__tabs");
+      const tabsContent = document.querySelectorAll(".operations__content");
+
+      console.log(tabs);
+      tabsContainer.addEventListener("click", function (e) {
+        const clt = e.target
+          .closest(".operations__tab")
+          .getAttribute("data-tab");
+        setactivetab(clt);
+      });
+    </script>
+  </body>
+</html>
