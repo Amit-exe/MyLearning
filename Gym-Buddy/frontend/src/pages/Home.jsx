@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import WorkoutComp from "../components/Workoutcomp";
-
+import WorkoutForm from "../components/WorkoutForm";
+import { useWorkoutContext } from "../hooks/useWorkoutContext";
 const Home = () => {
-  const [workouts, setWorkout] = useState(null);
-
+  const { workout, dispatch } = useWorkoutContext();
   useEffect(() => {
     const fetchWorkout = async () => {
       const response = await fetch("/api/workout");
-      console.log(response);
+
       // const text = await response.text(); // Get the raw response as text
       // console.log("Raw response text:", text);
       const json = await response.json();
-      console.log("hhh");
 
       if (response.ok) {
-        setWorkout(json);
+        console.log(response.body);
+
+        dispatch({ type: "SET_WORKOUT", payload: json });
       }
     };
     fetchWorkout();
@@ -22,12 +23,13 @@ const Home = () => {
   return (
     <div className="home">
       <div className="workouts">
-        {workouts &&
-          workouts.map((workout) => (
-            // <p>{workout.title}</p>
-            <WorkoutComp key={workout._id} workout={workout} />
-          ))}
+        {workout &&
+          workout.map((workout) => {
+            // <p>{workout.title}</p
+            <WorkoutComp key={workout._id} workout={workout} />;
+          })}
       </div>
+      <WorkoutForm />
     </div>
   );
 };
