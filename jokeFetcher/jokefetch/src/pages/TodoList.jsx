@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TodoListItem from "../components/TodoListItem";
+import { NavLink } from "react-router-dom";
 
 function TodoList() {
   const [tasks, setTasks] = useState(() => {
@@ -22,7 +23,7 @@ function TodoList() {
     setTasks(updatedTasks);
   };
   return (
-    <div className="m-8 flex justify-center ">
+    <div className="m-8 flex justify-center items-center h-100">
       <div className="flex flex-row gap-10">
         <div className="px-8 bg-amber-100 rounded-2xl p-4">
           <ul>
@@ -33,6 +34,7 @@ function TodoList() {
         </div>
         <div className="flex flex-col gap-4">
           <input
+            placeholder="todo"
             className="p-3 rounded-xl text-white placeholder-gray-300 bg-gray-700"
             type="text"
             onChange={(v) => {
@@ -51,6 +53,7 @@ function TodoList() {
             Add Task
           </button>
         </div>
+        <NavLink to="/">Login</NavLink>
       </div>
     </div>
   );
