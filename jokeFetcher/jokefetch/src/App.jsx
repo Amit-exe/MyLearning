@@ -5,6 +5,7 @@ import TodoList from "./pages/TodoList";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/Navbar";
 import NoMatch from "./components/NoMatch";
+import Weather from "./pages/Weather";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Login />}></Route>
         <Route path="/joke" element={<JokeFetcher />}></Route>
         <Route path="/todo" element={<TodoList />}></Route>
+        <Route path="/weather" element={<Weather />}></Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>
       {/* <JokeFetcher /> */}

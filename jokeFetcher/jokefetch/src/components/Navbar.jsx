@@ -38,6 +38,16 @@ const NavBar = () => {
               todo
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/weather"
+              className={({ isActive }) =>
+                isActive ? "text-blue-500 font-bold" : ""
+              }
+            >
+              weather
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>
